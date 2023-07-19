@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'ig-db-ecotouch'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2913549EAE284DB9A312680678F5D734 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C326C25470F545ACB2C5A5358B67C170 }}
           package: '*.jar'
