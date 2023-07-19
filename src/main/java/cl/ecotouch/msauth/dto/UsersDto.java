@@ -11,4 +11,6 @@ public class UsersDto {
     Integer profile;
     String email;
     String name;
+    String rut;
+    String mobile;
 }

@@ -14,6 +14,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 public class LoginController {
 
     private final UserService userService;
+
     @CrossOrigin("*")
     @PostMapping("")
     public ResponseEntity<?> validateUser(@RequestBody LoginRequestDto loginRequestDto){
@@ -25,4 +26,5 @@ public class LoginController {
             return ResponseEntity.internalServerError().contentType(MediaType.APPLICATION_JSON).body(exception.getMessage());
         }
     }
+
 }

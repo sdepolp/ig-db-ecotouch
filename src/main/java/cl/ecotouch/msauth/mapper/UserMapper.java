@@ -17,7 +17,8 @@ public interface UserMapper {
             @Result(property = "password", column = "PASSWORD"),
             @Result(property = "profile", column = "PROFILE"),
             @Result(property = "email", column = "EMAIL"),
-            @Result(property = "name", column = "NAME")
+            @Result(property = "name", column = "NAME"),
+            @Result(property = "mobile", column = "MOBILE")
     })
     UsersDto getUserById(LoginRequestDto loginRequestDto);
 
@@ -27,7 +28,19 @@ public interface UserMapper {
             @Result(property = "password", column = "PASSWORD"),
             @Result(property = "profile", column = "PROFILE"),
             @Result(property = "email", column = "EMAIL"),
-            @Result(property = "name", column = "NAME")
+            @Result(property = "name", column = "NAME"),
+            @Result(property = "mobile", column = "MOBILE")
     })
     UsersDto getUserByUsername(String username);
+
+    @Insert("INSERT INTO USERS(username, password, profile, email, name, rut, mobile) " +
+            "VALUES (#{username}, #{password}, #{profile}, #{email}, #{name}, #{rut}, #{mobile})")
+    void insertUser(UsersDto usuario);
+
+    @Update("UPDATE USERS SET password = #{password}, profile = #{profile}, " +
+            "email = #{email}, name = #{name}, rut = #{rut}, mobile = #{mobile} WHERE username = #{username}")
+    void updateUser(UsersDto usuario);
+
+    @Delete("DELETE FROM USERS WHERE username = #{username}")
+    void deleteUser(String username);
 }
