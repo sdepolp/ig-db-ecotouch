@@ -13,7 +13,7 @@ public interface OtpMapper {
             "VALUES (#{email}, #{otp}, #{expirationDate})")
     void insertOTP(OtpDto otp);
 
-    @Select("SELECT id, email, otp, expiration_date " +
+    @Select("SELECT top 1 id, email, otp, expiration_date " +
             "FROM otp_table " +
             "WHERE email = #{email} order by expiration_date desc")
     OtpDto findOTPByEmail(@Param("email") String email);
