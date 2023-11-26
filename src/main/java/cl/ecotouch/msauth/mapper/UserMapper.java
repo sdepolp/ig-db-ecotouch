@@ -11,16 +11,17 @@ public interface UserMapper {
     @Select("SELECT * FROM USERS")
     List<UsersDto> getAllUsers();
 
-    @Select("SELECT * FROM USERS WHERE USERNAME = #{username} AND PASSWORD = #{password}")
+    @Select("SELECT USERNAME,PASSWORD,PROFILE,EMAIL,NAME,RUT,MOBILE FROM USERS WHERE USERNAME = #{username} AND PASSWORD = #{password}")
     @Results(value = {
             @Result(property = "username", column = "USERNAME"),
             @Result(property = "password", column = "PASSWORD"),
             @Result(property = "profile", column = "PROFILE"),
             @Result(property = "email", column = "EMAIL"),
+            @Result(property = "rut", column = "RUT"),
             @Result(property = "name", column = "NAME"),
             @Result(property = "mobile", column = "MOBILE")
     })
-    UsersDto getUserById(LoginRequestDto loginRequestDto);
+    UsersDto  getUserById(LoginRequestDto loginRequestDto);
 
     @Select("SELECT TOP 1 * FROM USERS WHERE USERNAME = #{username} ")
     @Results(value = {

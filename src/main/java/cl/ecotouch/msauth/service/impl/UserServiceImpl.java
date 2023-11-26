@@ -34,12 +34,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginResponseDto validateUser(LoginRequestDto loginRequestDto) {
-        UsersDto usersDto = userMapper.getUserById(loginRequestDto);
-        UsersDto maskedUserInfo = usersDto;
-        maskedUserInfo.setPassword("********");
-        return LoginResponseDto.builder().token(generateToken(usersDto))
-                .userData(maskedUserInfo)
-                .build();
+        try{
+            UsersDto usersDto = userMapper.getUserById(loginRequestDto);
+            usersDto.setPassword("********");
+            log.info("[UserService][validateUser][FIN_OK]:{}", usersDto);
+            return LoginResponseDto.builder().token(generateToken(usersDto))
+                    .userData(usersDto)
+                    .build();
+        }catch(Exception ex){
+            log.info("[UserService][validateUser][FIN_EX]:{}", ex.getMessage());
+            return null;
+        }
+
     }
 
     @Override
