@@ -40,7 +40,18 @@ public class PlanController {
         }
     }
 
-    //TODO UPDATE REMAINING WEIGHT
+    @CrossOrigin("*")
+    @GetMapping(value = "/get-all-plan")
+    public ResponseEntity<?> getAllPlan(){
+        try{
+            return ResponseEntity.ok(planService.getAllPlan());
+        }catch (HttpStatusCodeException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).contentType(MediaType.APPLICATION_JSON).body(ex.getResponseBodyAsString());
+        }catch (Exception exception) {
+            return ResponseEntity.internalServerError().contentType(MediaType.APPLICATION_JSON).body(exception.getMessage());
+        }
+    }
+
     @CrossOrigin("*")
     @PutMapping(value = "/update-weight")
     public ResponseEntity<?> updateWeight(@RequestParam String username,@RequestParam Double remainingWeight){

@@ -17,6 +17,9 @@ public interface PlanMapper {
     @Select("SELECT * FROM subscription WHERE username = #{username}")
     List<PlanRequestDto> getPlan(String username);
 
+    @Select("SELECT * FROM subscription")
+    List<PlanRequestDto> getAllPlan();
+
     @Update("UPDATE SUBSCRIPTION set remainingWeight = #{remainingWeight} where username = #{username}")
     void updateRemainingWeight(String username, Double remainingWeight);
 }

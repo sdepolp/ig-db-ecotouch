@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,6 +49,11 @@ public class PlanServiceImpl implements PlanService {
     public Optional<PlanRequestDto> getPlan(String username) {
         Optional<PlanRequestDto> response = planMapper.getPlan(username).stream().findFirst();
         return response;
+    }
+
+    @Override
+    public List<PlanRequestDto> getAllPlan() {
+        return planMapper.getAllPlan();
     }
 
     @Override
